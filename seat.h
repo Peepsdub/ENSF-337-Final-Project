@@ -1,5 +1,5 @@
 //seat class header
-#ifndef SEAT_H
+/*#ifndef SEAT_H
 #define SEAT_H
 #include <stdio.h>
 using namespace std;
@@ -19,5 +19,29 @@ private:
     bool status;
 };
 
+
+#endif
+*/
+
+
+#ifndef SEAT_H
+#define SEAT_H
+
+class Seat {
+
+public:
+
+    Seat (int r, char s);
+
+    int getRow() const { return row; }
+
+    char getSeat() const { return seat; }
+
+private:
+
+    int row;
+
+    char seat;
+};
 
 #endif
