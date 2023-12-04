@@ -1,12 +1,3 @@
-//flight class
-/*
-class flight
-flight id: string
-rows: int
-cols: int
-list of passengers: vector
-seat map: vector or matrix
-*/
 
 #include "flight.h"
 #include <iostream>
@@ -17,7 +8,6 @@ seat map: vector or matrix
 void Flight::show_seat_map() {
     std::cout << "Seat Map for Flight " << flightNumber << ":" << std::endl;
 
-    // Display column letters
     std::cout << "     ";
     for (int i = 0; i < seatsPerRow; ++i) {
         std::cout << static_cast<char>('A' + i) << "   ";
