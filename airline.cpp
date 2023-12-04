@@ -4,7 +4,7 @@
 void Airline::showHeader() {
     std::cout << "Version 1.0" << std::endl;
     std::cout << "Term Project - Flight Management Program in C++" << std::endl;
-    std::cout << "Produced by: Petr Dubovsky, " << std::endl;
+    std::cout << "Produced by: Petr Dubovsky, Jakub Stefanczyk,  " << std::endl;
 }
 
 void Airline::loadFlightFromFile(Flight& flight, const std::string& filename) {
