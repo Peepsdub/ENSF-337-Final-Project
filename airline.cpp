@@ -44,7 +44,7 @@ void Airline::displayMenu(Flight& flight, const std::string& filename) {
             flight.save_passenger_info(filename);
         }
         else if (q == 6) {
-            std::cout << "Exiting program." << std::endl;
+            std::cout << "Program Terminated." << std::endl;
         }
         else {
             std::cout << "Not a choice. Please try again." << std::endl;
