@@ -1,5 +1,3 @@
-//seat class
-#include "seat.h"
-// seat row number : int
-// seat column : char
-// seat status
+#include "Seat.h"
+//def
+Seat::Seat(int r, char s) : row(r), seat(s) {}
