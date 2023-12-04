@@ -1,7 +1,20 @@
-//passenger class
-#include "passenger.h"
-Passenger::Passenger(string f, string l, string p):fname(f), lname(l), phone(p) {}
-// first and last name : string 
-// passenger id : int
-// phone number : string
-// passenger seat : ptr to seat map
+#include "Passenger.h"
+Passenger::Passenger(const std::string& first, const std::string& last, const std::string& phone, Seat* seat, int id)
+    : FName(first), LName(last), PNumber(phone), assignedSeat(seat), idNumber(id) {}
+std::string Passenger::getFirstName() const {
+    return FName;
+}
+std::string Passenger::getLastName() const {
+    return LName;
+}
+
+std::string Passenger::getPhoneNumber() const {
+    return PNumber;
+}
+Seat* Passenger::getAssignedSeat() const {
+    return assignedSeat;
+}
+int Passenger::getIdNumber() const {
+    return idNumber;
+}
+
