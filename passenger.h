@@ -1,6 +1,6 @@
 #ifndef PASSENGER_H
 #define PASSENGER_H
-#include "Seat.h"
+#include "seat.h"
 #include <string>
 class Passenger {
 public:
