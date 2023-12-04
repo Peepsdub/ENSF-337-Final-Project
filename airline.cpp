@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 void Airline::showHeader() {
-    std::cout << "Welcome to the Airline Management Portal" << std::endl;
+    std::cout << "Version 1.0\n" << std::endl;
 }
 
 void Airline::loadFlightFromFile(Flight& flight, const std::string& filename) {
