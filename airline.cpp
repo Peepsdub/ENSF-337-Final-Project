@@ -5,7 +5,7 @@ void Airline::display_header() {
     std::cout << "Welcome to the Airline Management Portal" << std::endl;
 }
 
-void Airline::populate_flight_from_file(Flight& flight, const std::string& filename) {
+void Airline::loadFlightFromFile(Flight& flight, const std::string& filename) {
     std::ifstream file(filename);
     if (file.is_open()) {
         file >> flight.flightNumber >> flight.numRows >> flight.seatsPerRow;
