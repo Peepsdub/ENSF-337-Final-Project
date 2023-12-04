@@ -33,7 +33,7 @@ char num_to_alpha(int i) {
         i += 65;
     return char(i);
 }
-#include "Flight.h"
+#include "flight.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
