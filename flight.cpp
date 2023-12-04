@@ -6,25 +6,20 @@
 #include <sstream>
 
 void Flight::show_passenger_info() {
-    // iterate through passenger list and print with proper formatting
     std::cout << std::left << std::setw(20) << "| First Name"
         << std::left << std::setw(20) << "| Last Name"
         << std::left << std::setw(20) << "| Phone Number"
         << std::left << std::setw(8) << "| Seat"
         << std::left << std::setw(8) << "| ID" << "|" << std::endl;
 
-    // Separator line bw table header and passenger info
     std::cout << std::setfill('-') << std::setw(76) << "|" << std::setfill(' ') << std::endl;
 
     for (size_t i = 0; i < passengerList.size(); ++i) {
-        // Print data with vertical lines
         std::cout << std::left << std::setw(20) << "| " + passengerList[i].getFirstName()
             << std::left << std::setw(20) << "| " + passengerList[i].getLastName()
             << std::left << std::setw(20) << "| " + passengerList[i].getPhoneNumber()
             << std::left << std::setw(8) << "| " + std::to_string(passengerList[i].getAssignedSeat()->getRow()) + passengerList[i].getAssignedSeat()->getSeat()
             << std::left << std::setw(8) << "| " + std::to_string(passengerList[i].getIdNumber()) << "|" << std::endl;
-
-        // Separator line after each row
         std::cout << std::setfill('-') << std::setw(76) << "|" << std::setfill(' ') << std::endl;
     }
     std::cout << std::endl;
@@ -39,11 +34,8 @@ void Flight::load_passenger_info(const std::string& filename) {
             if (line.size() < 64) {
                 continue;
             }
-            // 0-19, 20-39, 40-59, 60-67, 68-75 of each line
-            // std::istringstream iss(line);
             std::string firstName, lastName, phoneNumber, seat, idString;
             firstName = line.substr(0, 20);
-            // trim whitespace off each string
             firstName.erase(firstName.find_last_not_of(" \n\r\t") + 1);
             lastName = line.substr(20, 20);
             lastName.erase(lastName.find_last_not_of(" \n\r\t") + 1);
@@ -53,11 +45,9 @@ void Flight::load_passenger_info(const std::string& filename) {
             seat.erase(seat.find_last_not_of(" \n\r\t") + 1);
             idString = line.substr(64, 8);
             idString.erase(idString.find_last_not_of(" \n\r\t") + 1);
-
             int idNumber = std::stoi(idString);
             int seatNumber = std::stoi(seat.substr(0, seat.size() - 1));
             char row = seat[seat.size() - 1];
-
             passengerList.push_back(Passenger(firstName, lastName, phoneNumber, new Seat(seatNumber, row), idNumber));
         }
         file.close();
@@ -69,7 +59,7 @@ void Flight::load_passenger_info(const std::string& filename) {
 
 void Flight::remove_passenger() {
     int id;
-    std::cout << "Enter passenger ID to remove: ";
+    std::cout << "Enter passenger ID that you want to remove: ";
     std::cin >> id;
 
     for (std::vector<Passenger>::iterator it = passengerList.begin(); it != passengerList.end(); ++it) {
@@ -120,15 +110,12 @@ void Flight::add_passenger() {
         return;
     }
 
-
     Passenger newPassenger(firstName, lastName, phoneNumber, new Seat(row, seat), idNumber);
     passengerList.push_back(newPassenger);
     std::cout << "Passenger added to Flight " << flightNumber << "." << std::endl;
 
     save_passenger_info("flight_info.txt");
 }
-
-
 void Flight::save_passenger_info(const std::string& filename) {
     char confirm;
 	std::cout << "Do you want to save the data in " << filename << "? (Y/N): ";
@@ -144,7 +131,6 @@ void Flight::save_passenger_info(const std::string& filename) {
                 file << std::left << std::setw(20) << passenger.getFirstName() << std::setw(20) << passenger.getLastName()
                     << std::setw(20) << passenger.getPhoneNumber() << std::setw(4) << std::to_string(assignedSeat->getRow()) + assignedSeat->getSeat()
                     << std::setw(8) << passenger.getIdNumber() << std::endl;
-                // clear the buffer
                 file.flush();
             }
             file.close();
@@ -156,7 +142,6 @@ void Flight::save_passenger_info(const std::string& filename) {
         std::cout << "File not saved." << std::endl;
     }
 }
-
 void Flight::show_seat_map() {
     std::cout << "Seat Map for Flight " << flightNumber << ":" << std::endl;
 
@@ -165,8 +150,6 @@ void Flight::show_seat_map() {
         std::cout << static_cast<char>('A' + i) << "   ";
     }
     std::cout << std::endl;
-
-    // Display seat map with borders and occupied seats
     for (int i = 1; i <= numRows; ++i) {
         std::cout << std::setw(2) << i << " ";
         for (int j = 0; j < seatsPerRow; ++j) {
@@ -191,6 +174,3 @@ void Flight::show_seat_map() {
         std::cout << "+" << std::endl;
     }
 }
-
-
-
