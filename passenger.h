@@ -1,27 +1,21 @@
-//passenger class header
-#ifndef PASS_H
-#define PASS_H
+#ifndef PASSENGER_H
+#define PASSENGER_H
+#include "Seat.h"
 #include <string>
-#include <stdio.h>
-using namespace std;
 class Passenger {
 public:
-    Passenger(string f, string l, string p);
-    Passenger():fname(""), lname(""), phone(""), id(0){}
-    ~Passenger();
-
-    string get_fname() const {return fname;}
-    string get_lname() const {return lname;}
-    string get_phone() const {return phone;}
-    int get_id() const {return id;}
-
+    Passenger(const std::string& first, const std::string& last, const std::string& phone, Seat* seat, int id);
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    std::string getPhoneNumber() const;
+    Seat* getAssignedSeat() const;
+    int getIdNumber() const;
 private:
-    string fname;
-    string lname;
-    string phone;
-    int id;
-    Seat* seat;
-
+    std::string FirstName;
+    std::string LastName;
+    std::string PhoneNumber;
+    Seat* assignedSeat;
+    int idNumber;
 };
 
-#endif
+#endif 
