@@ -2,7 +2,9 @@
 #include <iostream>
 #include <fstream>
 void Airline::showHeader() {
-    std::cout << "Version 1.0\n" << std::endl;
+    std::cout << "Version 1.0" << std::endl;
+    std::cout << "Term Project - Flight Management Program in C++" << std::endl;
+    std::cout << "Produced by: Petr Dubovsky, " << std::endl;
 }
 
 void Airline::loadFlightFromFile(Flight& flight, const std::string& filename) {
