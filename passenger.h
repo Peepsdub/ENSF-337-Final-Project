@@ -11,9 +11,9 @@ public:
     Seat* getAssignedSeat() const;
     int getIdNumber() const;
 private:
-    std::string FirstName;
-    std::string LastName;
-    std::string PhoneNumber;
+    std::string FName;
+    std::string LName;
+    std::string PNumber;
     Seat* assignedSeat;
     int idNumber;
 };
