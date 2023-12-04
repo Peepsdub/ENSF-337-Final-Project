@@ -1,7 +1,7 @@
 #include "airline.h"
 #include <iostream>
 #include <fstream>
-void Airline::display_header() {
+void Airline::showHeader() {
     std::cout << "Welcome to the Airline Management Portal" << std::endl;
 }
 
