@@ -6,6 +6,8 @@
 #include <iostream>
 #include <fstream>
 
+// All initialization functions below (menu, data population)
+
 void Airline::display_header() {
     std::cout << "Welcome to the Airline Management Portal" << std::endl;
 }
