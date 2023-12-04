@@ -54,6 +54,3 @@ void Airline::displayMenu(Flight& flight, const std::string& filename) {
         }
     } while ( q!= 6);
 }
-
-
-//Airline::Airline (string n): name(n) {}
