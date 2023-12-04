@@ -1,6 +1,6 @@
 #include "airline.h"
 int main() {
-    Airline Airline;
+    Airline airline;
     Flight flight;
     std::string filename = "flight_info.txt";
     Airline.display_header();
