@@ -15,7 +15,7 @@ void Airline::loadFlightFromFile(Flight& flight, const std::string& filename) {
         file.close();
     }
     else {
-        std::cerr << "Cannot open file: " << filename << std::endl;
+        std::cerr << "File could not be opened: " << filename << std::endl;
     }
 }
 
@@ -47,11 +47,11 @@ void Airline::displayMenu(Flight& flight, const std::string& filename) {
             std::cout << "Program Terminated." << std::endl;
         }
         else {
-            std::cout << "Not a choice. Please try again." << std::endl;
+            std::cout << "Not an option, please try again" << std::endl;
         }
 
         if (q != 6) {
-            std::cout << "<<Press Return to Move Forward>>";
+            std::cout << "<<Press Return to Continue>>";
             std::cin.get(); 
         }
     } while ( q!= 6);
