@@ -2,7 +2,7 @@
 #ifndef FLIGHT_H
 #define FLIGHT_H
 
-#include "Passenger.h"
+#include "passenger.h"
 #include <vector>
 #include <string>
 class Flight {
