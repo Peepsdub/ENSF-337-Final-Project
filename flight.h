@@ -1,26 +1,22 @@
 //flight class header
 #ifndef FLIGHT_H
 #define FLIGHT_H
-#include <stdio.h>
-#include <string>
+
+#include "Passenger.h"
 #include <vector>
-#include "passenger.cpp"
-using namespace std;
+#include <string>
 class Flight {
 public:
-    Flight(int r, int c);
-    Flight(const Flight& f);
-    Flight():rows(0), cols(0){}
-    ~Flight();
+    std::string flightNumber;
+    int numRows;
+    int seatsPerRow;
+    std::vector<Passenger> passengerList;
 
-    char num_to_alpha(int i);
-
-private:
-    string id;
-    int rows;
-    int cols;
-    vector <Passenger*> pass_list;
+    void show_seat_map();
+    void show_passenger_info();
+    void load_passenger_info(const std::string& filename);
+    void add_passenger();
+    void remove_passenger();
+    void save_passenger_info(const std::string& filename);
 };
-
-
 #endif
