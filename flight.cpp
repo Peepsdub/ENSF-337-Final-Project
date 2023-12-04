@@ -5,42 +5,6 @@
 #include <fstream>
 #include <sstream>
 
-void Flight::show_seat_map() {
-    std::cout << "Seat Map for Flight " << flightNumber << ":" << std::endl;
-
-    std::cout << "     ";
-    for (int i = 0; i < seatsPerRow; ++i) {
-        std::cout << static_cast<char>('A' + i) << "   ";
-    }
-    std::cout << std::endl;
-
-    // Display seat map with borders and occupied seats
-    for (int i = 1; i <= numRows; ++i) {
-        std::cout << std::setw(2) << i << " ";
-        for (int j = 0; j < seatsPerRow; ++j) {
-            bool isOccupied = false;
-            for (size_t k = 0; k < passengerList.size(); ++k) {
-                int row = passengerList[k].getAssignedSeat()->getRow();
-                char seat = passengerList[k].getAssignedSeat()->getSeat();
-                if (row == i && j == seat - 'A') {
-                    std::cout << "| X ";
-                    isOccupied = true;
-                    break;
-                }
-            }
-            if (!isOccupied) {
-                std::cout << "|   ";
-            }
-        }
-        std::cout << "|" << std::endl << "   ";
-        for (int j = 0; j < seatsPerRow; ++j) {
-            std::cout << "+---";
-        }
-        std::cout << "+" << std::endl;
-    }
-}
-
-
 void Flight::show_passenger_info() {
     // iterate through passenger list and print with proper formatting
     std::cout << std::left << std::setw(20) << "| First Name"
@@ -103,53 +67,6 @@ void Flight::load_passenger_info(const std::string& filename) {
     }
 }
 
-void Flight::add_passenger() {
-    std::string firstName, lastName, phoneNumber;
-    int idNumber;
-    std::string seat_row;
-    std::cout << "Enter first name: ";
-    std::cin >> firstName;
-    std::cin.clear();
-    std::cin.ignore(10000, '\n');
-    std::cout << "Enter last name: ";
-    std::cin >> lastName;
-    std::cin.clear();
-    std::cin.ignore(10000, '\n');
-    std::cout << "Enter phone number: ";
-    std::cin >> phoneNumber;
-    std::cin.clear();
-    std::cin.ignore(10000, '\n');
-    std::cout << "Enter seat row and seat (Example: 1A): ";
-    std::cin >> seat_row;
-    int row = std::stoi(seat_row.substr(0, seat_row.size() - 1));
-    char seat = seat_row[seat_row.size() - 1];
-    std::cin.clear();
-    std::cin.ignore(10000, '\n');
-    std::cout << "Enter ID number: ";
-    std::cin >> idNumber;
-
-    bool seatOccupied = false;
-    for (size_t i = 0; i < passengerList.size(); ++i) {
-        if (passengerList[i].getAssignedSeat()->getRow() == row && passengerList[i].getAssignedSeat()->getSeat() == seat) {
-            seatOccupied = true;
-            break;
-        }
-    }
-
-    if (row > numRows || row <= 0 || seat < 'A' || seat >= 'A' + seatsPerRow || seatOccupied) {
-        std::cout << "Invalid seat selection or seat already occupied. Passenger not added." << std::endl;
-        return;
-    }
-
-
-    Passenger newPassenger(firstName, lastName, phoneNumber, new Seat(row, seat), idNumber);
-    passengerList.push_back(newPassenger);
-    std::cout << "Passenger added to Flight " << flightNumber << "." << std::endl;
-
-    save_passenger_info("flight_info.txt");
-}
-
-
 void Flight::remove_passenger() {
     int id;
     std::cout << "Enter passenger ID to remove: ";
@@ -165,10 +82,56 @@ void Flight::remove_passenger() {
     std::cout << "Passenger with ID " << id << " not found in Flight " << flightNumber << "." << std::endl;
 }
 
+void Flight::add_passenger() {
+    std::string firstName, lastName, phoneNumber;
+    int idNumber;
+    std::string seat_row;
+    std::cout << "Please enter first name: ";
+    std::cin >> firstName;
+    std::cin.clear();
+    std::cin.ignore(10000, '\n');
+    std::cout << "Please enter last name: ";
+    std::cin >> lastName;
+    std::cin.clear();
+    std::cin.ignore(10000, '\n');
+    std::cout << "Please enter phone number: ";
+    std::cin >> phoneNumber;
+    std::cin.clear();
+    std::cin.ignore(10000, '\n');
+    std::cout << "Please enter seat row and seat (Example: 1A): ";
+    std::cin >> seat_row;
+    int row = std::stoi(seat_row.substr(0, seat_row.size() - 1));
+    char seat = seat_row[seat_row.size() - 1];
+    std::cin.clear();
+    std::cin.ignore(10000, '\n');
+    std::cout << "Please enter ID number: ";
+    std::cin >> idNumber;
+
+    bool seatOccupied = false;
+    for (size_t i = 0; i < passengerList.size(); ++i) {
+        if (passengerList[i].getAssignedSeat()->getRow() == row && passengerList[i].getAssignedSeat()->getSeat() == seat) {
+            seatOccupied = true;
+            break;
+        }
+    }
+
+    if (row > numRows || row <= 0 || seat < 'A' || seat >= 'A' + seatsPerRow || seatOccupied) {
+        std::cout << "Invalid seat selection. Passenger not added." << std::endl;
+        return;
+    }
+
+
+    Passenger newPassenger(firstName, lastName, phoneNumber, new Seat(row, seat), idNumber);
+    passengerList.push_back(newPassenger);
+    std::cout << "Passenger added to Flight " << flightNumber << "." << std::endl;
+
+    save_passenger_info("flight_info.txt");
+}
+
 
 void Flight::save_passenger_info(const std::string& filename) {
     char confirm;
-	std::cout << "Do you want to save the data in " << filename << "file? (Y/N): ";
+	std::cout << "Do you want to save the data in " << filename << "? (Y/N): ";
     std::cin >> confirm;
 
     if (confirm == 'Y' || confirm == 'y') {
@@ -193,5 +156,41 @@ void Flight::save_passenger_info(const std::string& filename) {
         std::cout << "File not saved." << std::endl;
     }
 }
+
+void Flight::show_seat_map() {
+    std::cout << "Seat Map for Flight " << flightNumber << ":" << std::endl;
+
+    std::cout << "     ";
+    for (int i = 0; i < seatsPerRow; ++i) {
+        std::cout << static_cast<char>('A' + i) << "   ";
+    }
+    std::cout << std::endl;
+
+    // Display seat map with borders and occupied seats
+    for (int i = 1; i <= numRows; ++i) {
+        std::cout << std::setw(2) << i << " ";
+        for (int j = 0; j < seatsPerRow; ++j) {
+            bool isOccupied = false;
+            for (size_t k = 0; k < passengerList.size(); ++k) {
+                int row = passengerList[k].getAssignedSeat()->getRow();
+                char seat = passengerList[k].getAssignedSeat()->getSeat();
+                if (row == i && j == seat - 'A') {
+                    std::cout << "| X ";
+                    isOccupied = true;
+                    break;
+                }
+            }
+            if (!isOccupied) {
+                std::cout << "|   ";
+            }
+        }
+        std::cout << "|" << std::endl << "   ";
+        for (int j = 0; j < seatsPerRow; ++j) {
+            std::cout << "+---";
+        }
+        std::cout << "+" << std::endl;
+    }
+}
+
 
 
