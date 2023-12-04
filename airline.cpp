@@ -1,13 +1,6 @@
-//airline class
-// airline name: string
-// list of flights: vector or linked list 
-// number of flights: int 
 #include "Airline.h"
 #include <iostream>
 #include <fstream>
-
-// All initialization functions below (menu, data population)
-
 void Airline::display_header() {
     std::cout << "Welcome to the Airline Management Portal" << std::endl;
 }
@@ -24,7 +17,7 @@ void Airline::populate_flight_from_file(Flight& flight, const std::string& filen
     }
 }
 
-void Airline::displayMenu(Flight& flight, const std::string& filename) {
+void Airline::displaydisplayMenu(Flight& flight, const std::string& filename) {
     int q;
     do {
         std::cout << "\nMenu Options:\n1. Show map of seats\n2. Passenger Info\n3. Add Passenger\n4. Remove Passenger\n5. Save Passenger Info\n6. Exit" << std::endl;
