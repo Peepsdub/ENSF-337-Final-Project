@@ -1,7 +1,7 @@
 #ifndef AIRLINE_H
 #define AIRLINE_H
 
-#include "Flight.h"
+#include "flight.h"
 
 class Airline {
 public:
